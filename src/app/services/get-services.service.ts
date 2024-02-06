@@ -16,7 +16,7 @@ export class GetServicesService {
   constructor(private http: HttpClient) {
    // this.url = "http://dev.combuscol.co";
    
-  this.url ="https://combusapp.combuscol.com:3415";
+  this.url ="https://dev.combuscol.co";
 
 
    }

@@ -158,7 +158,7 @@
 <div class="row">
   
 
-  <div class="col-sm-4">
+  <div class="col-sm-8">
    
       <small class="text-muted">
         <label for="email" id="negrilla" >Correo electrónico facturación electrónica: .* </label>
@@ -167,14 +167,7 @@
    
   </div>
 
-   <div class="col-sm-4">
-    
-      <small class="text-muted">
-        <label for="confirmaremail" id="negrilla" >Confirmar correo electrónico facturación electrónica: .* </label>
-      </small>
-      <input type="email" class="form-control" autocomplete="off" aria-describedby="emailHelp" placeholder="Confirmar correo electrónico" [(ngModel)] ="confirmaremail" required (change)="validarConfirmaremail()"/>
-    
-  </div>
+
  
   <br>
 
@@ -190,12 +183,6 @@
 
 <div class="row">
 
-  <div class="col-sm-4">
-    <small class="text-muted">
-      <label for="dirección" id="negrilla">Dirección:.* </label>
-    </small>
-    <input type="text" class="form-control" autocomplete="off" placeholder="Dirección" [(ngModel)] ="direccion" required (change)="validarDireccion()" />
-   </div>
   
   <div class="col-md-4">
     <div>
@@ -223,19 +210,20 @@
     </select>
   </div>
 
+  <div class="col-sm-4">
+    <div class="form-group">
+      <small class="text-muted">
+        <label for="email" id="negrilla">Correo electrónico OPCIONAL: </label>
+      </small>
+      <input type="emailopcional1" class="form-control" autocomplete="off" id="emailopcional1" aria-describedby="emailHelp" placeholder="Correo electrónico opcionaL" [(ngModel)] ="email_alternativo_1" (change)="validarEmail()" />
+    </div>
+  </div>
+
 
  </div>
 
  <br>
 
- <div class="row">
-  <div class="col-sm-8">
-    <small class="text-muted">
-      <label for="rut" id="negrilla">Cargue su RUT:.* </label>
-    </small>
-    <input name="rut" type="file" [(ngModel)] ="rut" class="form-control" id="rut" placeholder="Seleccione su RUT" (change)="setRut($event)"  />
-   </div> 
- </div>
    </div><!-- FINAL DEL CARD ACTIVO-->  
 </div>
   <!-- INICIO - EMAIL - CONFIRMACIÓN DE EMAIL -->
@@ -254,51 +242,10 @@
 <br>
  
  <div class="card">
-  <div class="card-header text-left " id="letra2">
-     Información Opcional
-   
-  </div>
-
+  
   
 
-  <div class="card-body" id="autorizo">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <small class="text-muted">
-              <label for="email" id="negrilla">Correo electrónico opcional 1: </label>
-            </small>
-            <input type="emailopcional1" class="form-control" autocomplete="off" id="emailopcional1" aria-describedby="emailHelp" placeholder="Correo electrónico opcional 1" [(ngModel)] ="email_alternativo_1" (change)="validarEmail()" />
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <small class="text-muted">
-              <label for="confirmaremail" id="negrilla" >Confirmar correo electrónico opcional 1 </label>
-            </small>
-            <input type="confirmaropcional1" class="form-control" autocomplete="off" id="confirmaropcional1" aria-describedby="emailHelp" placeholder="Confirmar correo electrónico opcional 1" [(ngModel)] ="confirmaremail1" (change)="validarConfirmaremail()"/>
-          </div>
-        </div>
-      </div> <!-- PRIMERA FILA CONFIRMACIÓN CORREO 1  -->
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <small class="text-muted">
-              <label for="email" id="negrilla">Correo electrónico opcional 2: </label>
-            </small>
-            <input type="emailopcional2" class="form-control" autocomplete="off" id="emailopcional2" aria-describedby="emailHelp" placeholder="Correo electrónico opcional 2" [(ngModel)] ="email_alternativo_2" (change)="validarEmail()" />
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <small class="text-muted">
-              <label for="confirmaremail" id="negrilla" >Confirmar correo electrónico opcional 2 </label>
-            </small>
-            <input type="confirmaropcional2" class="form-control" autocomplete="off" id="emailopcional2" aria-describedby="emailHelp" placeholder="Confirmar correo electrónico opcional 2" [(ngModel)] ="confirmaremail2" (change)="validarConfirmaremail()"/>
-          </div>
-        </div>
-      </div> <!-- SEGUNDA FILA CONFIRMACIÓN CORREO 2  -->
-   </div> <!-- CIERRE CARD BODY INFORMACIÓN ADICIONAL  -->
+  
   </div> <!-- CIERRE DEL CARD INFORMACIÓN ADICIONAL  -->
 
  
@@ -344,42 +291,14 @@
     <br>
 
     <p class="col-md-12 text-center" >
-      <button type="button" class="btn btn-primary"  id="boton1" data-bs-toggle="modal" (click)="continuar()" data-bs-target="#exampleModal" >
+      <button type="button" class="btn btn-primary"  id="boton1" data-bs-toggle="modal" (click)="showModal()" data-bs-target="#exampleModal" >
        Registrarse
       </button>
     </p>
 
     
 
-    <!-- this comment was realized by Miguel Cano on september 13 thirteen
-    <div>
-      <ul>
-        <li>
-          <a style="color: #e63020"  >
-            
-          </a>
-        </li>
-      </ul>
-    </div>-->
-
-  <!-- this comment was realized by Miguel Cano on september 13 thirteen-->
-   <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-       <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">¿ ESTA SEGURO DE REGISTRAR ESTE CLIENTE COMO FACTURADOR ELECTRÓNICO ?</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-           <button type="button" class="btn btn-primary" (click)="continuar()" >Continuar</button>
-          </div>
-        </div>
-      </div>
-      
-    </div>-->
-
-
+  
 <!-- FIN CONTAINER-->
 
 

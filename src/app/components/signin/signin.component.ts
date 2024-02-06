@@ -110,18 +110,10 @@ export class SigninComponent implements OnInit {
   @Input() segundoapellido!: string;
 
   @Input() email! : string;
-  @Input() confirmaremail! : string;
   @Input() celular! : string;
-  @Input() direccion! : string;
-  @Input() rut! : string;
-  @Input() rut_base64! : string;
   @Input() bases! : string;
   @Input() email_alternativo_1! : string;
-  @Input() email_alternativo_2! : string;
   
-  @Input() confirmaremail1! : string;
-  @Input() confirmaremail2! : string;
-
   
 
   @Input() ok! : boolean; 
@@ -155,48 +147,44 @@ export class SigninComponent implements OnInit {
 
  }
 
- showModal() {
+ showModal() 
+  {
    
-  //Swal.fire('Error', 'El código ya se encuentra bloqueado')
+    //Swal.fire('Error', 'El código ya se encuentra bloqueado')
 
-  Swal.fire({
-      icon: 'warning',
-      title: 'Crear cliente facturación electrónica',
-      text: ' Esta seguro de crear el cliente ?',
-      showCancelButton: true,
-      confirmButtonColor: '#005da1', 
-      cancelButtonColor: '#e63020',
-      confirmButtonText: 'Si'
+    Swal.fire({
+        icon: 'warning',
+        title: 'Crear cliente facturación electrónica',
+        text: ' Esta seguro de crear el cliente ?',
+        showCancelButton: true,
+        confirmButtonColor: '#005da1', 
+        cancelButtonColor: '#e63020',
+        confirmButtonText: 'Si'
 
-  }).then((result) => {
+    }).then((result) => 
+    
+    {
 
-      
-      if (result.isConfirmed){
-
-              
-       if (this.registroExitoso == true){
+      if (result.isConfirmed)
+      {
         this.irVerificar();
-        Swal.fire(
-          'Registro adicionado!',
-          'Cliente factura electrónica -- creado..en días hábiles sera vaidado para su utilizació',
-          'success'
-        );
 
-       }else{
-        Swal.fire(
-          'Error al adicionar el registro',
-          'Empresa y/o cliente ya existe por favor verificar..',
-          'error'
-        );
+                
+        if (this.registroExitoso == true){
+          
+          Swal.fire(
+            'Registro adicionado!',
+            'Cliente factura electrónica creado..',
+            'success'
+          );
 
-       }
-           
-      
-        //this.registroExitoso=true;
+        }
+    
+          //this.registroExitoso=true;
       }
-  })
+    })
   
-}
+  }
 
   continuar()
   {
@@ -233,28 +221,15 @@ export class SigninComponent implements OnInit {
         exito = this.validarEmail();
 
       if( exito )
-        exito = this.validarConfirmaremail();
-
-      if( exito )
-        exito = this.compararCorreos();
-
-      if( exito )
-        exito = this.compararCorreosopc1();
-
-       if( exito )
-        exito = this.compararCorreosopc2();
-
-      if( exito )
         exito = this.validarCelular();
 
-      if( exito )
-        exito = this.validarDireccion();  
-
-      if( exito )
-        exito = this.validarRut();  
-
       if(exito)
-          this.irVerificar();      
+          //this.showModal();
+          //if(this.registroExitoso==true)
+          //{
+            this.irVerificar();      
+          //}
+                
     }
     else
     {
@@ -508,24 +483,7 @@ validarPrimernombre()
     return exito; 
   }
 
-  validarConfirmaremail()
-  {
 
-    let exito = false;
-    let regex= new RegExp( /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/g );
-    this.error = '';
-    
-      if( regex.test(this.confirmaremail) != true ) 
-      {
-        this.error = ( "La confirmación del correo esta mal escrito, por favor verificar." );
-      } 
-      else
-      {
-        exito = true;
-      }
-
-      return exito; 
-  }
     
   validarCelular()
   {
@@ -546,78 +504,7 @@ validarPrimernombre()
     return exito; 
   }
 
-  validarDireccion(){
 
-    let exito = false;
-    let regex= new RegExp( /^([A-Za-z]\s*){1,50}/g );
-    this.error = '';
-    
-    if(( regex.test(this.direccion) != true)  || ((this.direccion) ==null) )
-    {
-      this.error = ( "La dirección esta mal escrito, por favor verificar." );
-
-    } 
-    else
-    {
-      exito = true;
-    }
-
-    return exito; 
-  }
-
-  compararCorreos()
-  {
-    let exito = false;
-    this.error = '';
-
-    if(this.email == this.confirmaremail)
-    {
-      exito= true;
-    }
-    else
-    {
-      this.error = ( "El correo electrónico para la facturación electrónica no esta confirmado de manera correcta" );
-    }
-
-    return exito;
-  }
-
-  compararCorreosopc1()
-  {
-    let exito = false;
-    this.error = '';
-
-    if(this.email_alternativo_1 == this.confirmaremail1)
-    {
-      exito= true;
-    }
-    else
-    {
-      this.error = ( "El correo electrónico opcional 1 no esta confirmado de manera correcta" );
-    }
-
-    return exito;
-  }
-
-
-  compararCorreosopc2()
-  {
-    let exito = false;
-    this.error = '';
-
-    if(this.email_alternativo_2 == this.confirmaremail2) 
-    {
-      exito= true;
-    }if((this.email_alternativo_2 =="") && (this.confirmaremail2=="")){
-      exito= true;
-    }
-    else
-    {
-      this.error = ( "El correo electrónico opcional 2 no esta confirmado de manera correcta" );
-    }
-
-    return exito;
-  }
 
   validarCity()
   {
@@ -636,44 +523,7 @@ validarPrimernombre()
     return exito; 
   }
 
-  validarRut()
-  {
-    let exito = false;
-    let ltdocumento= null;
 
-    if( this.rut == ltdocumento) 
-    {
-      this.error = ("Debes adjuntar el RUT, por favor verificar.");
-    } 
-    else
-    {
-      exito = true;
-    }
-
-    return exito; 
-  }
-
-  setRut(event:any){
-    const file:File = event.target.files[0];
-    this._rut = file.name;
-    this.getBase64(file,this);
-  }
-
-  getBase64(file:File, component:SigninComponent) 
-  {
-    var reader = new FileReader();
-    var base64;
-    
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      component._rutb64
-      base64=reader.result?.toString().split(',').pop();
-      component._rutb64 = base64!;
-    };
-    reader.onerror = function (error) {
-      console.log('Error: ', error);
-    };
- }
 
  ontipoPersona()
  { 
@@ -701,23 +551,84 @@ validarPrimernombre()
 
  
 
- irVerificar(){
+ irVerificar()
+  {
   
+  if (this.ptipopersonaA.id == '1') 
+    {
     
-    if (this.ptipopersonaA.id == '1') {
-  
-      let  rta={} as Rta;
-      let mensaje: string;
-      this.toastService.onShowMessage.emit( "Procesando..." );
-  
+        let  rta={} as Rta;
+        let mensaje: string;
+
       
-  
-      this.combuscolfeService.signIn(this.ptipopersonaA.id.toString(), this.razonsocial.toString(), this.primernombre, this.segundonombre, this.primerapellido, this.segundoapellido,this.email, this.email_alternativo_1, this.email_alternativo_2,this.celular, this.documento, this.tipodocumento,
-      this.pselectedDpto.id.toString(), this.direccion, country, this.pselectedCity.id.toString(), tax_level_code, this.regimen, tax_id, this._rut, 
-      this._rutb64).subscribe(data=>{
-  
-      //this.toastService.mensajeHide.emit();         
-  
+        this.toastService.onShowMessage.emit( "Procesando..." );
+    
+        this.combuscolfeService.signIn(this.ptipopersonaA.id.toString(), this.razonsocial.toString(), this.primernombre, this.segundonombre, this.primerapellido, this.segundoapellido,this.email, this.email_alternativo_1,this.celular, this.documento, this.tipodocumento,
+        this.pselectedDpto.id.toString(), country, this.pselectedCity.id.toString(), tax_level_code, this.regimen, tax_id).subscribe(data=>{
+    
+        //this.toastService.mensajeHide.emit();         
+    
+        rta.code = data.codigo;
+        rta.msg = data.mensaje;      
+          
+        console.log("Codigo", rta.code);
+        console.log("Mensaje", rta.msg);
+        console.log("Valor", rta.val);
+        
+        
+        if (rta.code != 100)
+        {
+          this.registroExitoso = false;              
+          this.toastService.onShowMessage.emit(rta.msg);
+          console.log("Mensaje evidenciando el problema",rta.msg);
+          //this.continuar();
+          this.registroExitoso = false;  
+          
+          
+        }else
+          {
+            //this.registroExitoso = true;  
+            this.toastService.mensajeHide.emit();
+            //this.router.navigate(['/confirmar']);  
+            this.actualizarSinin();
+            this.router.navigate(['/sigin']);  
+          }
+    
+          console.log("Datos",data.codigo);
+          console.log("Datos",data.error);
+          console.log("Datos",data.mensaje);
+          this.registroExitoso = false;
+        
+        },
+        (error) => 
+        {
+          // Manejar el error aquí utilizando try-catch
+          try {
+            throw error;
+          } catch (e) {
+            console.error('Ocurrió un error:', e);
+            return e;
+            // Realizar acciones adicionales si es necesario
+            //this.registroExitoso = true;
+          }
+        });
+      this.toastService.mensajeHide.emit();  // on september 22
+    }  // FIN PRIMER IF TIPO DE PERSONA 1
+    
+
+    
+    if (this.ptipopersonaA.id == '2') {
+      var rta={} as Rta;
+          
+      this.toastService.onShowMessage.emit( "Procesando..." );
+
+      
+
+      this.combuscolfeService.signIn(this.ptipopersonaA.id.toString(), this.razonsocial, this.primernombre.toString(), this.segundonombre, this.primerapellido.toString(), this.segundoapellido,this.email, this.email_alternativo_1, this.celular, this.documento, this.tipodocumento,
+      this.pselectedDpto.id.toString(), country, this.pselectedCity.id.toString(), tax_level_code, this.regimen, tax_id).subscribe(data=>{
+
+      this.toastService.mensajeHide.emit();         
+
       rta.code = data.codigo;
       rta.msg = data.mensaje;      
         
@@ -726,115 +637,53 @@ validarPrimernombre()
       console.log("Valor", rta.val);
         
       if (rta.code != 100){
-        this.registroExitoso = false;              
         this.toastService.onShowMessage.emit(rta.msg);
-        //this.result1.isConfirmed = false;
-        //this.router.navigate(['/sigin']);  
-        console.log("Mensaje evidenciando el problema",rta.msg);
-       }else
+      }else
         {
-          //this.registroExitoso = true;  
+          this.router.navigate(['/confirmar']);  
           this.toastService.mensajeHide.emit();
-          //this.router.navigate(['/confirmar']);  
           this.actualizarSinin();
           this.router.navigate(['/sigin']);  
-         
-        }
-  
-        console.log("Datos",data.codigo);
-        console.log("Datos",data.error);
-        console.log("Datos",data.mensaje);
-        this.registroExitoso = false;
-      
-      },
-      (error) => {
-        // Manejar el error aquí utilizando try-catch
-        try {
-          throw error;
-        } catch (e) {
-          console.error('Ocurrió un error:', e);
-          return e;
-          // Realizar acciones adicionales si es necesario
-          //this.registroExitoso = true;
-        }
-     
           
-    });
-    this.toastService.mensajeHide.emit();  // on september 22
+        }
+
+        console.log("Datos",data);
+    
+      
+      });
+      this.toastService.mensajeHide.emit();  // on september 22
   }
   
-  
-  if (this.ptipopersonaA.id == '2') {
-    var rta={} as Rta;
-         
-    this.toastService.onShowMessage.emit( "Procesando..." );
+}
 
-    
 
-    this.combuscolfeService.signIn(this.ptipopersonaA.id.toString(), this.razonsocial, this.primernombre.toString(), this.segundonombre, this.primerapellido.toString(), this.segundoapellido,this.email, this.email_alternativo_1, this.email_alternativo_2,this.celular, this.documento, this.tipodocumento,
-    this.pselectedDpto.id.toString(), this.direccion, country, this.pselectedCity.id.toString(), tax_level_code, this.regimen, tax_id, this._rut, 
-    
-    this._rutb64).subscribe(data=>{
 
-    this.toastService.mensajeHide.emit();         
 
-    rta.code = data.codigo;
-    rta.msg = data.mensaje;      
-      
-    console.log("Codigo", rta.code);
-    console.log("Mensaje", rta.msg);
-    console.log("Valor", rta.val);
-      
-    if (rta.code != 100){
-      this.toastService.onShowMessage.emit(rta.msg);
-     }else
-      {
-        this.router.navigate(['/confirmar']);  
-        this.toastService.mensajeHide.emit();
-        this.actualizarSinin();
-        this.router.navigate(['/sigin']);  
-         
-      }
 
-      console.log("Datos",data);
-  
-    
-    });
-    this.toastService.mensajeHide.emit();  // on september 22
+  actualizarSinin()
+  {
+    this.documento = '';
+    this.confirmardocumento = '';
+    this.tipodocumento = '';
+    this.ptipopersonaA.id = '';
+    this.primernombre = '';
+    this.segundonombre = '';
+    this.primerapellido = '';
+    this.segundoapellido = '';
+    this.razonsocial = '';
+    this.regimen = '';
+    this.email = '';
+    this.celular = '';
+    this.pselectedDpto.id = '';
+    this.pselectedCity.id = '';
+    this.email_alternativo_1 = '';
+    this.ok = false;
   }
-  
-  }
-
-    actualizarSinin(){
-
-      this.documento = '';
-      this.confirmardocumento = '';
-      this.tipodocumento = '';
-      this.ptipopersonaA.id = '';
-      this.primernombre = '';
-      this.segundonombre = '';
-      this.primerapellido = '';
-      this.segundoapellido = '';
-      this.razonsocial = '';
-      this.regimen = '';
-      this.email = '';
-      this.confirmaremail = '';
-      this.celular = '';
-      this.direccion = '';
-      this.pselectedDpto.id = '';
-      this.pselectedCity.id = '';
-      this.rut = '';
-      this.email_alternativo_1 = '';
-      this.confirmaremail1 = '';
-      this.email_alternativo_2 = '';
-      this.confirmaremail2 = '';
-      this.ok = false;
-      
-    }
      
-  
+}
+
      
-    }
+
         
 
   

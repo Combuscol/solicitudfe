@@ -17,7 +17,8 @@ export class CombuscolfeService {
   constructor(private http: HttpClient, private toastService: ToastService) {
    // this.url = "http://dev.combuscol.co";
    
-  this.url ="https://combusapp.combuscol.com:3415";
+  //this.url ="https://combusapp.combuscol.com:3415";
+  this.url= "https://combusapp.combuscol.com:3419/api/Solicitud/CrearClienteMaster"
 
 
    }
@@ -32,19 +33,16 @@ export class CombuscolfeService {
           segundoapellido: string, // segundo apellido
           correo1: string, // mail
           correo_alternativo_1: string, // Correo opcional 1
-          correo_alternativo_2: string, // Correo opcional 2
           celular: string, // phone
           documento: string,  // identification
           tipodoc:string,  // Cédula - NIT etc
           dpto: string, // state
-          direccion: string, // address
           country: string, // Pais "CO"
           ciudad: string, // city
           tax_level_code: string,    // "R-99-PN"    
           regimen:string, // tax_level_code_list
-          tax_id: string, // "ZZ"
-          rut: string, // archivo capturado
-          rut_base64: string// Base 64 del archivo capturado
+          tax_id: string // "ZZ"
+         
         
         
        
@@ -60,19 +58,16 @@ export class CombuscolfeService {
       nombre:razonsocial,
       email:correo1,
       email_alternativo_1:correo_alternativo_1,
-      email_alternativo_2:correo_alternativo_2,
       telefono:celular,
       identificacion:documento,
       tipo_identificacion:tipodoc,
       codigo_dpto :dpto,
-      direccion:direccion,
       codigo_pais:country,
       codigo_ciudad:ciudad,
       obligaciones:tax_level_code,
       regimen:regimen,
-      identificador_tributo:tax_id,
-      dv:rut,
-      rut_b64:rut_base64
+      identificador_tributo:tax_id
+      
      };
 
 
@@ -84,19 +79,16 @@ export class CombuscolfeService {
       last_name:segundoapellido,
       email:correo1,
       email_alternativo_1:correo_alternativo_1,
-      email_alternativo_2:correo_alternativo_2,
       telefono:celular,
       identificacion:documento,
       tipo_identificacion:tipodoc,
       codigo_dpto :dpto,
-      direccion:direccion,
       codigo_pais:country,
       codigo_ciudad:ciudad,
       obligaciones:tax_level_code,
       regimen:regimen,
       identificador_tributo:tax_id,
-      dv:rut,
-      rut_b64:rut_base64
+      
      };
     
      
