@@ -168,7 +168,7 @@ export class SigninComponent implements OnInit {
       if (result.isConfirmed)
       {
         this.irVerificar();
-
+       
                 
         if (this.registroExitoso == true){
           
@@ -211,10 +211,16 @@ export class SigninComponent implements OnInit {
       if( exito )
          if(this.ptipopersonaA.id == '1'){
           exito = this.validarRazonsocial();
-         }else{
+         }
+
+      if( exito )
+         if(this.ptipopersonaA.id == '2'){
           exito = this.validarPrimernombre();
-        }
+         }
        
+         //else{
+          //exito = this.validarPrimernombre();
+         //      }
 
       if( exito )
         
@@ -251,7 +257,7 @@ export class SigninComponent implements OnInit {
   validarDocumento()
   {
     let exito = false;
-    let regex= new RegExp( /([0-9]){6,14}/g );
+    let regex= new RegExp( /^\d{6,14}$/g );
 
     this.error = '';
     
@@ -270,13 +276,13 @@ export class SigninComponent implements OnInit {
   confirmarDocumento()
   {
     let exito = false;
-    let regex= new RegExp( /([0-9]){6,14}/g );
+    let regex= new RegExp( /^\d{6,14}$/g );
 
     this.error = '';
     
     if( regex.test(this.confirmardocumento) != true ) 
     {
-      this.error = ("La confirmación del numero de documento esta ma escrito, por favor verificar");
+      this.error = ("La confirmación del numero de documento esta mal escrito, por favor verificar");
     } 
     else
     {
@@ -365,7 +371,8 @@ export class SigninComponent implements OnInit {
     
     let exito = false;
     /*let regex= new RegExp( /[^a-z][A-Z ]{10,50}/g );*/
-    let regex= new RegExp( /[^a-z. ][A-Z. ]{1,20}/g );
+    let regex= new RegExp( /^[a-zA-Z.& ]{5,}$/g );
+
     this.error = '';
     /*
     const tpersona: any  = this.selected;
@@ -387,27 +394,32 @@ validarPrimernombre()
   {
 
     let exito = false;
-    let regex= new RegExp( /[^a-z. ][A-Z. ]{1,20}/g );
+    let regex= new RegExp( /^[a-zA-Z. ]{3,}$/g );
     this.error = '';
+
+    console.log('ANTES DEL IF', this.primernombre);
+
     
-    if( (regex.test(this.primernombre) != true) &&  (regex.test(this.primerapellido) != true)) 
+    if( (regex.test(this.primernombre) != true) ) 
     {
-      this.error =  ( "Primer nombre y/o primer apellido esta mal escrito o vacio, por favor verificar." );
-    } 
+      console.log('CUANDO INGRESA AL IF - POR FALLA',this.primernombre);
+      this.error =  ( "Primer nombre esta mal escrito o vacio, por favor verificar." );
+     } 
     else
     {
+      console.log('CUANDO LA VALIDACIÓN ES OK',this.primernombre);
       exito = true;
     }
-
     return exito; 
-
   }
-  
+
+
+    
   validarSegundonombre()
   {
 
     let exito = false;
-    let regex= new RegExp( /[^a-z. ][A-Z. ]{1,20}/g );
+    let regex= new RegExp( /^[a-zA-Z. ]{3,}$/g );
     this.error = '';
     
     if( regex.test(this.segundonombre) != true ) 
@@ -428,7 +440,7 @@ validarPrimernombre()
   {
 
     let exito = false;
-    let regex= new RegExp( /[^a-z. ][A-Z. ]{1,20}/g );
+    let regex= new RegExp( /^[a-zA-Z. ]{3,}$/g );
     this.error = '';
     
     if( regex.test(this.primerapellido) != true ) 
@@ -449,7 +461,7 @@ validarPrimernombre()
   {
 
     let exito = false;
-    let regex= new RegExp( /[^a-z. ][A-Z. ]{1,20}/g );
+    let regex= new RegExp( /^[a-zA-Z. ]{3,}$/g );
     this.error = '';
     
     if( regex.test(this.segundoapellido) != true ) 
@@ -582,7 +594,7 @@ validarPrimernombre()
           this.toastService.onShowMessage.emit(rta.msg);
           console.log("Mensaje evidenciando el problema",rta.msg);
           //this.continuar();
-          this.registroExitoso = false;  
+          //this.registroExitoso = false;  
           
           
         }else
