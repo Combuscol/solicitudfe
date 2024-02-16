@@ -371,7 +371,7 @@ export class SigninComponent implements OnInit {
     
     let exito = false;
     /*let regex= new RegExp( /[^a-z][A-Z ]{10,50}/g );*/
-    let regex= new RegExp( /^[a-zA-Z.& ]{5,}$/g );
+    let regex= new RegExp( /^[a-zA-Z0-9.&Ññ ]{5,}$/g );
 
     this.error = '';
     /*
@@ -394,7 +394,8 @@ validarPrimernombre()
   {
 
     let exito = false;
-    let regex= new RegExp( /^[a-zA-Z. ]{3,}$/g );
+    let regex= new RegExp( /^[a-zA-Z.Ññ ]{3,}$/g );
+   
     this.error = '';
 
     console.log('ANTES DEL IF', this.primernombre);
@@ -419,7 +420,7 @@ validarPrimernombre()
   {
 
     let exito = false;
-    let regex= new RegExp( /^[a-zA-Z. ]{3,}$/g );
+    let regex= new RegExp( /^[a-zA-Z.Ññ ]{3,}$/g );
     this.error = '';
     
     if( regex.test(this.segundonombre) != true ) 
@@ -440,7 +441,7 @@ validarPrimernombre()
   {
 
     let exito = false;
-    let regex= new RegExp( /^[a-zA-Z. ]{3,}$/g );
+    let regex= new RegExp( /^[a-zA-Z.Ññ ]{3,}$/g );
     this.error = '';
     
     if( regex.test(this.primerapellido) != true ) 
@@ -461,7 +462,7 @@ validarPrimernombre()
   {
 
     let exito = false;
-    let regex= new RegExp( /^[a-zA-Z. ]{3,}$/g );
+    let regex= new RegExp( /^[a-zA-Z.Ññ ]{3,}$/g );
     this.error = '';
     
     if( regex.test(this.segundoapellido) != true ) 

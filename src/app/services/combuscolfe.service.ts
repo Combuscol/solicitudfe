@@ -17,7 +17,7 @@ export class CombuscolfeService {
   constructor(private http: HttpClient, private toastService: ToastService) {
    // this.url = "http://dev.combuscol.co";
    
-  this.url ="https://combusapp.combuscol.com:3419";
+  this.url ="https://combusapp.combuscol.com:3415";
   //this.url= "https://combusapp.combuscol.com:3419/api/Solicitud/CrearClienteMaster"
 
 
