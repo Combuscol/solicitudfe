@@ -167,20 +167,26 @@ export class SigninComponent implements OnInit {
 
       if (result.isConfirmed)
       {
+        //this.registroExitoso = false;     //Como se que el valor es verdadero   
+        let  rta={} as Rta;
         this.irVerificar();
-       
-                
-        if (this.registroExitoso == true){
-          
-          Swal.fire(
-            'Registro adicionado!',
-            'Cliente factura electrónica creado..',
-            'success'
-          );
 
-        }
+        if (rta.val == 100){
+          if (this.registroExitoso == true){
+          
+            Swal.fire(
+              'Registro adicionado!',
+              'Cliente factura electrónica creado, a partir de este momento puedes solicitar factura electrónica',
+              'success'
+            );
+  
+          }
+
+        } 
+      
+        
     
-          //this.registroExitoso=true;
+        this.registroExitoso=true;
       }
     })
   
@@ -230,11 +236,14 @@ export class SigninComponent implements OnInit {
         exito = this.validarCelular();
 
       if(exito)
-          //this.showModal();
+          this.showModal();
           //if(this.registroExitoso==true)
           //{
-            this.irVerificar();      
-          //}
+      
+            //this.irVerificar(); // Cambio 20 de febrero 2024. - MCV      
+          
+          
+            //}
                 
     }
     else
@@ -566,6 +575,7 @@ validarPrimernombre()
 
  irVerificar()
   {
+
   
   if (this.ptipopersonaA.id == '1') 
     {
@@ -596,11 +606,11 @@ validarPrimernombre()
           console.log("Mensaje evidenciando el problema",rta.msg);
           //this.continuar();
           //this.registroExitoso = false;  
-          
+                    
           
         }else
           {
-            //this.registroExitoso = true;  
+            this.registroExitoso = true;  // MCV
             this.toastService.mensajeHide.emit();
             //this.router.navigate(['/confirmar']);  
             this.actualizarSinin();
@@ -650,9 +660,14 @@ validarPrimernombre()
       console.log("Valor", rta.val);
         
       if (rta.code != 100){
-        this.toastService.onShowMessage.emit(rta.msg);
+
+        this.registroExitoso = false;              
+          this.toastService.onShowMessage.emit(rta.msg);
+          console.log("Mensaje evidenciando el problema",rta.msg);
+ 
       }else
         {
+          this.registroExitoso = true;  // MCV
           this.router.navigate(['/confirmar']);  
           this.toastService.mensajeHide.emit();
           this.actualizarSinin();
@@ -665,8 +680,7 @@ validarPrimernombre()
       
       });
       this.toastService.mensajeHide.emit();  // on september 22
-  }
-  
+    }   
 }
 
 
